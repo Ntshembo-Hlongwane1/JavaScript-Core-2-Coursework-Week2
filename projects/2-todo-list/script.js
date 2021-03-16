@@ -1,6 +1,40 @@
 function populateTodoList(todos) {
-  let list = document.getElementById("todo-list");
-  // Write your code to create todo list elements with completed and delete buttons here, all todos should display inside the "todo-list" element.
+  let itemLi = document.getElementById("todo-list");
+  for (let x = 0; x < todoList.length; x++) {
+    let listItem = document.createElement("li");
+    listItem.classitemLi.add(
+      "list-group-item",
+      "d-flex",
+      "justify-content-between",
+      "align-items-center"
+    );
+    let listSpan = document.createElement("span");
+    listSpan.classitemLi.add("badge", "bg-primary", "rounded-pill");
+    let itemChk = document.createElement("i");
+    itemChk.classitemLi.add("fa", "fa-check");
+    itemChk.setAttribute("aria-hidden", "true");
+    let itemNotNeeded = document.createElement("i");
+    itemNotNeeded.classitemLi.add("fa", "fa-trash");
+    itemNotNeeded.setAttribute("aria-hidden", "true");
+    listItem.innerText = todoList[i].task;
+    listSpan.append(itemChk);
+    listSpan.append(itemNotNeeded);
+    listItem.append(listSpan);
+    itemLi.append(listItem);
+    var liItemCompleted = () => {
+      if (listItem.style.textDecoration === "") {
+        listItem.style.textDecoration = "line-through";
+      } else if (listItem.style.textDecoration === "line-through") {
+        listItem.style.textDecoration = "";
+      }
+    };
+    itemChk.addEventListener("click", liItemCompleted);
+    var liItem = function (x) {
+      let getLiParent = x.target.parentElement.parentElement;
+      getLiParent.remove();
+    };
+    itemNotNeeded.addEventListener("click", liItem);
+  }
 }
 
 // These are the same todos that currently display in the HTML
