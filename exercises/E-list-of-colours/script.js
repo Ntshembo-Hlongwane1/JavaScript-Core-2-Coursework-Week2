@@ -1,17 +1,26 @@
-let colorBackground = document.getElementById("main")[0];
-function changeBackground1() {
-  setTimeout(function () {
-    main.style.backgroundColor = "red";
-  }, 5001);
+function listOfColours(colours) {
+  // Write your code here...
+  let content = document.querySelector("#content");
+  let pTag = document.createElement("p");
+  content.appendChild(pTag);
+
+  let selectTag = document.createElement("select");
+  selectTag.setAttribute("id", "selected");
+  content.appendChild(selectTag);
+
+  for (let i = 0; i < colours.length; i++) {
+    let optionTag = document.createElement("option");
+    let optionContent = document.createTextNode(`${colours[i]}`);
+    optionTag.appendChild(optionContent);
+    selectTag.appendChild(optionTag);
+  }
+  document.getElementById("selected").addEventListener("change", function () {
+    let selectedValue = document.getElementById("selected").value;
+    pTag.innerHTML = `You have selected: ${selectedValue}`;
+    pTag.style.color = selectedValue;
+  });
 }
-changeBackground1();
-let colorArray = ["gold", "crimson", "turquoise", "magenta"];
-function changeBackground2() {
-  let x = 0;
-  setInterval(() => {
-    if (x == colorArray.length) x = 0;
-    main.style.backgroundColor = colorArray[x];
-    x++;
-  }, 5000);
-}
-changeBackground2();
+
+const colours = ["yellow", "blue", "red", "green", "black", "grey"];
+
+listOfColours(colours);
